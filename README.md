@@ -57,6 +57,19 @@ Successfully tagged without-buildkit:latest
 The build contexts differ
 ```
 
-Without buildkit the directory `b/a/dir1` is not included because there is a
-`!b/a/dir1` in the `.dockerignore`. With buildkit this is overridden by the
-following `b/a/dir*`.
+There are 2 things in the filesystem:
+- b/a/dir1: an empty directory
+- b/a/file1: an empty file
+
+The .dockerignore has:
+```
+!b/a/file1
+b/a/file*
+!b/a/dir1
+b/a/dir*
+```
+
+Without buildkit: neither the empty file nor the empty directory are included.
+
+With buildkit: the empty directory `/b/a/dir1` is included.
+
