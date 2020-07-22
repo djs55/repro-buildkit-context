@@ -2,6 +2,8 @@
 
 rm -f without-buildkit with-buildkit
 
+mkdir -p b/a/dir1
+
 DOCKER_BUILDKIT=0 docker build -t without-buildkit .
 DOCKER_BUILDKIT=1 docker build -t with-buildkit .
 
